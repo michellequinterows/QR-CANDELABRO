@@ -1,50 +1,5 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<title>QR Candelabro AR</title>
-
-<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-
-<style>
-  body {
-    margin: 0;
-    background: #f5f5f5;
-    overflow: hidden;
-    font-family: Arial, sans-serif;
-  }
-
-  model-viewer {
-    width: 100%;
-    height: 100vh;
-  }
-
-  .boton-ar {
-    position: fixed;
-    bottom: 80px;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 20px 45px;
-    font-size: 20px;
-    border: none;
-    border-radius: 50px;
-    background: black;
-    color: white;
-    cursor: pointer;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    z-index: 999;
-  }
-
-  .boton-ar:active {
-    transform: translateX(-50%) scale(0.98);
-  }
-</style>
-</head>
-
-<body>
-
 <model-viewer
-  src="candelabro.glb?v=2"
+  src="candelabro_v2.glb"
   camera-controls
   auto-rotate
   shadow-intensity="1"
@@ -61,23 +16,18 @@ function abrirAR() {
   var isiOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
   var isAndroid = /Android/.test(navigator.userAgent);
 
-  // Generamos un número aleatorio para que el teléfono crea que es un archivo nuevo cada vez
+  // Nuevo modelo: cambia el nombre cada vez que actualices
   var version = Math.floor(Math.random() * 1000);
 
   if (isiOS) {
-    // Agregamos el parámetro de versión al final del .usdz
-    window.location.href = "https://michellequinterows.github.io/QR-CANDELABRO/candelabro.usdz?v=" + version;
+    window.location.href = "https://michellequinterows.github.io/QR-CANDELABRO/candelabro_v2.usdz?v=" + version;
   } 
   else if (isAndroid) {
-    // Agregamos el parámetro de versión dentro del link de Android
     window.location.href =
-      "intent://arvr.google.com/scene-viewer/1.0?file=https://michellequinterows.github.io/QR-CANDELABRO/candelabro.glb?v=" + version + "&mode=ar_only#Intent;scheme=https;package=com.google.ar.core;end;";
+      "intent://arvr.google.com/scene-viewer/1.0?file=https://michellequinterows.github.io/QR-CANDELABRO/candelabro_v2.glb?v=" + version + "&mode=ar_only#Intent;scheme=https;package=com.google.ar.core;end;";
   } 
   else {
     alert("Abre este enlace desde un iPhone o Android compatible.");
   }
 }
 </script>
-
-</body>
-</html>
