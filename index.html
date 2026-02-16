@@ -44,7 +44,7 @@
 <body>
 
 <model-viewer
-  src="candelabro.glb"
+  src="candelabro.glb?v=2"
   camera-controls
   auto-rotate
   shadow-intensity="1"
@@ -58,23 +58,24 @@
 
 <script>
 function abrirAR() {
-
   var isiOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
   var isAndroid = /Android/.test(navigator.userAgent);
 
+  // Generamos un número aleatorio para que el teléfono crea que es un archivo nuevo cada vez
+  var version = Math.floor(Math.random() * 1000);
+
   if (isiOS) {
-    // URL actualizada al nuevo repositorio QR-CANDELABRO
-    window.location.href = "https://michellequinterows.github.io/QR-CANDELABRO/candelabro.usdz";
+    // Agregamos el parámetro de versión al final del .usdz
+    window.location.href = "https://michellequinterows.github.io/QR-CANDELABRO/candelabro.usdz?v=" + version;
   } 
   else if (isAndroid) {
-    // Intent actualizado al nuevo repositorio QR-CANDELABRO
+    // Agregamos el parámetro de versión dentro del link de Android
     window.location.href =
-      "intent://arvr.google.com/scene-viewer/1.0?file=https://michellequinterows.github.io/QR-CANDELABRO/candelabro.glb&mode=ar_only#Intent;scheme=https;package=com.google.ar.core;end;";
+      "intent://arvr.google.com/scene-viewer/1.0?file=https://michellequinterows.github.io/QR-CANDELABRO/candelabro.glb?v=" + version + "&mode=ar_only#Intent;scheme=https;package=com.google.ar.core;end;";
   } 
   else {
     alert("Abre este enlace desde un iPhone o Android compatible.");
   }
-
 }
 </script>
 
