@@ -43,9 +43,9 @@
 
 <body>
 
-<!-- Previsualización en la página -->
+<!-- Preview del candelabro -->
 <model-viewer
-  src="candelabro_v2.glb"
+  src="candelabro_final_2026.glb"
   camera-controls
   auto-rotate
   shadow-intensity="1"
@@ -62,16 +62,14 @@ function abrirAR() {
   const isiOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
   const isAndroid = /Android/.test(navigator.userAgent);
 
-  // Número aleatorio para evitar cache en iOS
-  const version = Math.floor(Math.random() * 1000);
-
   if (isiOS) {
-    // Quick Look: USDZ con parámetro anti-cache
-    window.location.href = "https://michellequinterows.github.io/QR-CANDELABRO/candelabro_v2.usdz?v=" + version;
+    // iOS: Quick Look con parámetro anti-cache
+    const version = Math.floor(Math.random() * 1000);
+    window.location.href = "https://michellequinterows.github.io/QR-CANDELABRO_2/candelabro_final_2026.usdz?v=" + version;
   } 
   else if (isAndroid) {
-    // Scene Viewer: URL codificada para evitar errores 404
-    const glbUrl = encodeURIComponent("https://michellequinterows.github.io/QR-CANDELABRO/candelabro_v2.glb");
+    // Android: Scene Viewer con URL codificada y anti-cache
+    const glbUrl = encodeURIComponent("https://michellequinterows.github.io/QR-CANDELABRO_2/candelabro_final_2026.glb");
     window.location.href =
       "intent://arvr.google.com/scene-viewer/1.0?file=" + glbUrl + "&mode=ar_only#Intent;scheme=https;package=com.google.ar.core;end;";
   } 
