@@ -43,6 +43,7 @@
 
 <body>
 
+<!-- Previsualización en la página -->
 <model-viewer
   src="candelabro_v2.glb"
   camera-controls
@@ -58,20 +59,21 @@
 
 <script>
 function abrirAR() {
-  var isiOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-  var isAndroid = /Android/.test(navigator.userAgent);
+  const isiOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+  const isAndroid = /Android/.test(navigator.userAgent);
 
-  // Número aleatorio para evitar cache
-  var version = Math.floor(Math.random() * 1000);
+  // Número aleatorio para evitar cache en iOS
+  const version = Math.floor(Math.random() * 1000);
 
   if (isiOS) {
-    // iOS: usar USDZ con nombre actualizado
+    // Quick Look: USDZ con parámetro anti-cache
     window.location.href = "https://michellequinterows.github.io/QR-CANDELABRO/candelabro_v2.usdz?v=" + version;
   } 
   else if (isAndroid) {
-    // Android: usar GLB con nombre actualizado
+    // Scene Viewer: URL codificada para evitar errores 404
+    const glbUrl = encodeURIComponent("https://michellequinterows.github.io/QR-CANDELABRO/candelabro_v2.glb");
     window.location.href =
-      "intent://arvr.google.com/scene-viewer/1.0?file=https://michellequinterows.github.io/QR-CANDELABRO/candelabro_v2.glb?v=" + version + "&mode=ar_only#Intent;scheme=https;package=com.google.ar.core;end;";
+      "intent://arvr.google.com/scene-viewer/1.0?file=" + glbUrl + "&mode=ar_only#Intent;scheme=https;package=com.google.ar.core;end;";
   } 
   else {
     alert("Abre este enlace desde un iPhone o Android compatible.");
